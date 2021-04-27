@@ -1,6 +1,6 @@
 package uaslp.ingenieria.exams.instruments;
 
-public enum Instrumento {
+public enum SupportedInstrument {
     PIANO,
     GUITARRA,
     FLAUTA,

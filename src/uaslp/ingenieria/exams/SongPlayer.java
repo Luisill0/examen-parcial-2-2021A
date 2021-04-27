@@ -6,26 +6,20 @@ import java.util.Iterator;
 
 public class SongPlayer {
 
-    public void play(Song song, Instrumento instrumento) {
+    private InstrumentFactory instrumentFactory;
+
+    public SongPlayer(){
+        instrumentFactory = new InstrumentFactory();
+    }
+
+    public void play(Song song, SupportedInstrument instrumento) {
 
         Iterator<Nota> notas = song.getSongIterator();
-        Piano piano = new Piano();
-        Guitarra guitarra = new Guitarra();
-        Violin violin = new Violin();
-        Flauta flauta = new Flauta();
+        Instrument instrument = instrumentFactory.getInstrumentInstance(instrumento);
 
         while (notas.hasNext()) {
             Nota nota = notas.next();
-
-            switch (instrumento) {
-                case PIANO -> piano.presionaTecla(nota);
-                case FLAUTA -> flauta.sopla(nota);
-                case VIOLIN -> violin.toca(nota);
-                case GUITARRA -> guitarra.tocaCuerda(nota);
-                default -> System.out.println("Instrumento no soportado");
-            }
+            instrument.playNote(nota);
         }
-
     }
-
 }
